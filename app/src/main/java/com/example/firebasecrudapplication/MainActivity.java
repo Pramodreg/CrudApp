@@ -49,25 +49,34 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         courseRV = findViewById(R.id.idRVCourses);
         loadingPB = findViewById(R.id.idPBLoading);
         addFAB = findViewById(R.id.idAddFAB);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Courses");
         courseRVModalArrayList = new ArrayList<>();
+
         bottomSheetRL = findViewById(R.id.idRLBSheet);
         mAuth = FirebaseAuth.getInstance();
         courseRVAdapter = new CourseRVAdapter(courseRVModalArrayList, this, this);
+
         courseRV.setLayoutManager(new LinearLayoutManager(this));
         courseRV.setAdapter(courseRVAdapter);
-        addFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AddCourseActivity.class));
-            }
-        });
+
+
         getAllCourses();
+
+        addFAB.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this,AddCourseActivity.class));
+        }
+    });
     }
+
+
 
     private void getAllCourses(){
         courseRVModalArrayList.clear();

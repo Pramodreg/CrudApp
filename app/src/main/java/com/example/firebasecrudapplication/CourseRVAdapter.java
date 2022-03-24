@@ -18,22 +18,25 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHolder> {
-    private ArrayList<CourseRVModal> courseRVModalArrayList;
-    private Context context;
+    private final ArrayList<CourseRVModal> courseRVModalArrayList;
+    private final MainActivity context;
     int lastPos = -1;
-    private CourseClickInterface courseClickInterface;
+    private final CourseClickInterface courseClickInterface;
 
-    public CourseRVAdapter(ArrayList<CourseRVModal> courseRVModalArrayList, Context context, int lastPos, CourseClickInterface courseClickInterface) {
+    public CourseRVAdapter(ArrayList<CourseRVModal> courseRVModalArrayList, MainActivity context, CourseClickInterface courseClickInterface) {
         this.courseRVModalArrayList = courseRVModalArrayList;
         this.context = context;
         this.courseClickInterface = courseClickInterface;
     }
 
-    public CourseRVAdapter(ArrayList<CourseRVModal> courseRVModalArrayList, MainActivity mainActivity, MainActivity mainActivity1) {
-        
-    }
+//    public CourseRVAdapter(ArrayList<CourseRVModal> courseRVModalArrayList, MainActivity mainActivity, MainActivity mainActivity1) {
+//    }
 
-    @NonNull
+//    public CourseRVAdapter(ArrayList<CourseRVModal> courseRVModalArrayList, MainActivity mainActivity, MainActivity mainActivity1) {
+//
+//    }
+
+//    @NonNull
     @Override
     public CourseRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_rv_item, parent, false);
@@ -52,7 +55,6 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
                 courseClickInterface.onCourseClick(position);
             }
         });
-
     }
     private void setAnimation(View itemView, int position){
         if (position>lastPos){
@@ -71,8 +73,7 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView courseNameTV, coursePriceTV;
+    public class ViewHolder extends RecyclerView.ViewHolder {        private TextView courseNameTV, coursePriceTV;
         private ImageView courseIV;
 
         public ViewHolder(@NonNull View itemView) {
@@ -80,11 +81,12 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
             courseNameTV = itemView.findViewById(R.id.idTVCourseName);
             coursePriceTV = itemView.findViewById(R.id.idTVPrice);
             courseIV = itemView.findViewById(R.id.idIVCourse);
-
-
         }
     }
     public interface CourseClickInterface{
         void onCourseClick(int position);
     }
 }
+
+
+
